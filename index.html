@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>母亲节快乐 ❤️</title><style>
+body {
+  margin: 0;
+  font-family: "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #ffd6e0, #ffe9ec);
+  overflow-x: hidden;
+}
+
+/* 🌸 卡片 */
+.card {
+  max-width: 800px;
+  margin: 50px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  animation: fadeIn 2s ease;
+}
+
+/* ✨ 动画 */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* 📸 图片轮播 */
+.slider {
+  text-align:center
+}
+
+.slider img {
+  width: 300px;
+  max-width: 90%
+  border-radius: 10px;
+  display: none;
+}
+
+.slider img.active {
+  display: block;
+}
+
+/* 🌸 飘花 */
+.flower {
+  position: fixed;
+  top: -50px;
+  color: pink;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+  }
+}
+
+h1 {
+  text-align: center;
+  color: #ff5c8a;
+}
+
+p {
+  line-height: 1.8;
+}
+</style></head><body><div class="card">
+  <h1>❤️ 母亲节快乐 ❤️</h1>  <p>
+    那两天的画面，我到现在都不敢多想。
+
+你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
+我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。
+<br><br>
+Edna那一次是这样，
+这一次Enya也是。
+<br><br>
+你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。
+而我，却只能在外面等。😖
+<br>
+后来我才发现，原来我一直以为的“辛苦”，根本不算什么。
+真正辛苦的人，是你。
+<br>
+伤口还没好，你就已经开始抱着孩子；
+身体还没恢复，你就整夜醒来喂奶、哄她们。
+你很少说累，但我看得出来，你只是习惯忍着。
+<br><br>
+Edna在慢慢长大，
+Enya在5月2号刚满月。
+而你，从来没有停下来，好好为自己休息过。😢
+<br><br>
+我有时候会觉得心酸，
+因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。
+<br>
+如果可以，<br>我真的希望那两次躺在手术台上的人是我。
+至少，不是你一个人去承受那一切。
+<br>
+母亲节要到了，
+我不太会说什么好听的话，
+但我想让你知道——
+<br><br>
+那扇手术室的门关上的那一刻，
+我才真正明白，你对这个家的意义。
+<br>
+不是因为你做了多少事，
+而是因为你，真的把自己的一切都给了我们。❤️
+<br>
+谢谢你，把Edna和Enya带来这个世界。
+谢谢你，一直撑着这个家。❤️
+<br>
+以后，不会再让你一个人硬撑了。<br>
+我会在，你累的时候我来扛，你痛的时候我在旁边。🫂
+<br>
+你不只是她们的妈妈，<br><br>
+你也是我最心疼、最舍不得的人。❤️❤️❤️
+
+  </p>  <!-- 📸 图片轮播 -->  <div class="slider">
+    <img src="photo1.jpg" class="active">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+  </div>  <!-- 🎵 音乐 -->  <audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>  <p style="text-align:center; font-size:12px; color:gray;">
+    （点击页面任意位置播放音乐 🎵）
+  </p>
+</div><script>
+// 🎵 点击页面播放音乐
+document.body.addEventListener('click', function() {
+  document.getElementById('music').play();
+}, { once: true });
+
+// 📸 轮播
+let index = 0;
+const slides = document.querySelectorAll('.slider img');
+
+setInterval(() => {
+  slides[index].classList.remove('active');
+  index = (index + 1) % slides.length;
+  slides[index].classList.add('active');
+}, 3000);
+
+// 🌸 飘花
+function createFlower() {
+  const flower = document.createElement('div');
+  flower.classList.add('flower');
+  flower.innerHTML = '🌸';
+  flower.style.left = Math.random() * 100 + 'vw';
+  flower.style.animationDuration = (3 + Math.random() * 5) + 's';
+  document.body.appendChild(flower);
+
+  setTimeout(() => flower.remove(), 8000);
+}
+
+setInterval(createFlower, 500);
+</script></body>
+</html>
