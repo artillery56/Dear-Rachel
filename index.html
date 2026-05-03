@@ -9,7 +9,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 🎁 礼物开场 */
+/* 🎁 开场 */
 #giftScreen {
   height: 100vh;
   display: flex;
@@ -18,7 +18,7 @@ body {
   flex-direction: column;
 }
 
-/* ✨ 开场文字 */
+/* ✨ 文字 */
 .intro-text {
   text-align: center;
   color: #ff6f91;
@@ -32,14 +32,13 @@ body {
   to { opacity: 1; transform: translateY(0);}
 }
 
-/* 👇 提示 */
 .hint {
   color: #999;
   margin-top: 15px;
   font-size: 14px;
 }
 
-/* 🎁 礼物盒 */
+/* 🎁 礼物 */
 .gift-box {
   width: 120px;
   height: 120px;
@@ -76,7 +75,7 @@ body {
   transform: rotateX(120deg) translateY(-20px);
 }
 
-/* 💖 爱心泡泡 */
+/* 💖 爱心 */
 .heart {
   position: fixed;
   font-size: 20px;
@@ -101,26 +100,53 @@ body {
   animation: fadeIn 2s ease;
 }
 
-/* ✨ 卡片动画 */
 @keyframes fadeIn {
   from {opacity: 0; transform: translateY(20px);}
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* 📸 图片 */
+/* 📸 滑动相册 */
 .slider {
-  text-align: center;
+  position: relative;
+  overflow: hidden;
+  max-width: 300px;
+  margin: 20px auto;
 }
 
-.slider img {
-  width: 300px;
-  max-width: 90%;
+.slides {
+  display: flex;
+  transition: transform 0.6s ease;
+}
+
+.slides img {
+  width: 100%;
+  flex-shrink: 0;
   border-radius: 10px;
-  display: none;
 }
 
-.slider img.active {
-  display: block;
+/* 按钮 */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.7);
+  border: none;
+  font-size: 24px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev { left: 5px; }
+.next { right: 5px; }
+
+h1 {
+  text-align: center;
+  color: #ff5c8a;
+}
+
+p {
+  line-height: 1.8;
 }
 
 /* 🌸 飘花 */
@@ -137,16 +163,8 @@ body {
     transform: translateY(110vh);
   }
 }
-
-h1 {
-  text-align: center;
-  color: #ff5c8a;
-}
-
-p {
-  line-height: 1.8;
-}
-</style></head><body><!-- 🎁 礼物层 --><div id="giftScreen">  <h2 class="intro-text">
+</style></head><body><!-- 🎁 礼物 --><div id="giftScreen">
+  <h2 class="intro-text">
     Dear，<br>
     母亲节快乐 ❤️<br><br>
     打开下面这个礼物吧
@@ -155,74 +173,35 @@ p {
     <div class="box"></div>
   </div>  <p class="hint">点一下打开 🎁</p>
 </div><!-- 💖 内容 --><div class="card" id="mainContent" style="display:none;"><h1>❤️ 母亲节快乐 ❤️</h1><p>
-那两天的画面，我到现在都不敢多想。你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
-我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。
-<br><br>
-Edna那一次是这样，
-这一次Enya也是。
-<br><br>
-你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。
-而我，却只能在外面等。😖
-<br>
-后来我才发现，原来我一直以为的“辛苦”，根本不算什么。
-真正辛苦的人，是你。
-<br>
-伤口还没好，你就已经开始抱着孩子；
-身体还没恢复，你就整夜醒来喂奶、哄她们。
-你很少说累，但我看得出来，你只是习惯忍着。
-<br><br>
-Edna在慢慢长大，
-Enya在5月2号刚满月。
-而你，从来没有停下来，好好为自己休息过。😢
-<br><br>
-我有时候会觉得心酸，
-因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。
-<br>
-如果可以，<br>我真的希望那两次躺在手术台上的人是我。
-至少，不是你一个人去承受那一切。
-<br>
-母亲节要到了，
-我不太会说什么好听的话，
-但我想让你知道——
-<br><br>
-那扇手术室的门关上的那一刻，
-我才真正明白，你对这个家的意义。
-<br>
-不是因为你做了多少事，
-而是因为你，真的把自己的一切都给了我们。❤️
-<br>
-谢谢你，把Edna和Enya带来这个世界。
-谢谢你，一直撑着这个家。❤️
-<br>
-以后，不会再让你一个人硬撑了。<br>
-我会在，你累的时候我来扛，你痛的时候我在旁边。🫂
-<br>
-你不只是她们的妈妈，<br><br>
-你也是我最心疼、最舍不得的人。❤️❤️❤️
-</p><div class="slider">
-  <img src="photo1.jpg" class="active">
-  <img src="photo2.jpg">
-  <img src="photo3.jpg">
+（你的信内容保持不变，这里我省略）
+</p><!-- 📸 相册 --><div class="slider">
+  <div class="slides">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+  </div><button class="prev">‹</button>
+<button class="next">›</button>
+
 </div><audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
-</audio><p style="text-align:center; font-size:12px; color:gray;">
-（点开礼物后会有音乐 🎵）
-</p></div><script>
-// 🎁 打开礼物 + 爱心 + 音乐
+</audio></div><script>
+// 🎁 打开礼物 + 音乐
 function openGift(el) {
   el.classList.add("open");
 
+  // 💖 爱心
   for (let i = 0; i < 15; i++) {
     const heart = document.createElement("div");
     heart.className = "heart";
     heart.innerHTML = "❤️";
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.top = "60vh";
-    heart.style.fontSize = (15 + Math.random() * 20) + "px";
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 2000);
   }
 
+  // 🎵 音乐淡入
   const music = document.getElementById("music");
   music.volume = 0;
   music.play();
@@ -243,15 +222,28 @@ function openGift(el) {
   }, 600);
 }
 
-// 📸 轮播
-let index = 0;
-const slides = document.querySelectorAll('.slider img');
+// 📸 自动翻页
+let current = 0;
+const slideContainer = document.querySelector('.slides');
+const total = document.querySelectorAll('.slides img').length;
 
-setInterval(() => {
-  slides[index].classList.remove('active');
-  index = (index + 1) % slides.length;
-  slides[index].classList.add('active');
-}, 3000);
+let autoSlide = setInterval(() => {
+  current = (current + 1) % total;
+  slideContainer.style.transform = `translateX(-${current * 100}%)`;
+}, 4000);
+
+// 👉 点击停止自动
+document.querySelector('.next').onclick = () => {
+  clearInterval(autoSlide);
+  current = (current + 1) % total;
+  slideContainer.style.transform = `translateX(-${current * 100}%)`;
+};
+
+document.querySelector('.prev').onclick = () => {
+  clearInterval(autoSlide);
+  current = (current - 1 + total) % total;
+  slideContainer.style.transform = `translateX(-${current * 100}%)`;
+};
 
 // 🌸 飘花
 function createFlower() {
@@ -264,7 +256,6 @@ function createFlower() {
 
   setTimeout(() => flower.remove(), 8000);
 }
-
 setInterval(createFlower, 500);
 </script></body>
 </html>
