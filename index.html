@@ -25,13 +25,6 @@ body {
   line-height: 1.8;
 }
 
-.hint {
-  color: #999;
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-/* 🎁 礼物 */
 .gift-box {
   width: 120px;
   height: 120px;
@@ -84,47 +77,58 @@ body {
 
 /* 🌸 卡片 */
 .card {
-  max-width: 800px;
-  margin: 50px auto;
+  max-width: 900px;
+  margin: 40px auto;
   background: white;
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* 📸 相册 */
+/* 🎬 电影感相册 */
 .slider {
   position: relative;
   overflow: hidden;
-  max-width: 300px;
-  margin: 20px auto;
+  max-width: 600px;
+  margin: 40px auto;
 }
 
 .slides {
   display: flex;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s ease;
 }
 
 .slides img {
   width: 100%;
+  height: 320px;
+  object-fit: cover;
   flex-shrink: 0;
-  border-radius: 10px;
+  border-radius: 15px;
+  transform: scale(0.9);
+  opacity: 0.5;
+  transition: all 0.6s ease;
 }
 
+.slides img.active {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+/* 按钮 */
 .prev, .next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.8);
   border: none;
-  font-size: 24px;
-  padding: 5px 10px;
+  font-size: 26px;
+  padding: 8px 14px;
   cursor: pointer;
   border-radius: 50%;
 }
 
-.prev { left: 5px; }
-.next { right: 5px; }
+.prev { left: 10px; }
+.next { right: 10px; }
 
 h1 {
   text-align: center;
@@ -142,8 +146,8 @@ p {
   </h2>  <div class="gift-box" onclick="openGift(this)">
     <div class="lid"></div>
     <div class="box"></div>
-  </div>  <p class="hint">点一下打开 🎁</p>
-</div><!-- 💖 内容（默认直接显示，避免空白） --><div class="card" id="mainContent"><h1>❤️ 母亲节快乐 ❤️</h1><p>
+  </div>
+</div><!-- 💖 内容 --><div class="card" id="mainContent"><h1>❤️ 母亲节快乐 ❤️</h1><p>
 那两天的画面，我到现在都不敢多想。<br><br>你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
 我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。
 <br><br>
@@ -203,41 +207,84 @@ Enya在5月2号刚满月。<br>
 你不只是她们的妈妈，<br><br>
 你也是我最心疼、最舍不得的人。❤️❤️❤️
 
-</p><div class="slider">
+</p><!-- 📸 相册 --><div class="slider">
   <div class="slides">
-    <img src="photo1.jpg">
+    <img src="photo1.jpg" class="active">
     <img src="photo2.jpg">
     <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
   </div><button class="prev">‹</button>
 <button class="next">›</button>
 
 </div><audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio></div><script>
-// 🎁 打开礼物（不会再影响内容）
+// 🎁 打开礼物
 function openGift(el) {
   el.classList.add("open");
 
-  document.getElementById("giftScreen").style.display = "none";
+  for (let i = 0; i < 15; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "60vh";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 2000);
+  }
 
   const music = document.getElementById("music");
-  if (music) {
-    music.volume = 0.3;
-    music.play().catch(() => {});
-  }
+  music.volume = 0;
+  music.play().catch(()=>{});
+
+  let v = 0;
+  let fade = setInterval(() => {
+    if (v < 0.3) {
+      v += 0.02;
+      music.volume = v;
+    } else {
+      clearInterval(fade);
+    }
+  }, 100);
+
+  setTimeout(() => {
+    document.getElementById("giftScreen").style.display = "none";
+  }, 600);
 }
 
-// 📸 自动翻页（加保护，不会报错）
+// 🎬 电影感翻页
 let current = 0;
-const slideContainer = document.querySelector('.slides');
+const slides = document.querySelectorAll('.slides img');
 
-if (slideContainer) {
-  const total = document.querySelectorAll('.slides img').length;
-
-  setInterval(() => {
-    current = (current + 1) % total;
-    slideContainer.style.transform = `translateX(-${current * 100}%)`;
-  }, 4000);
+function updateSlides() {
+  slides.forEach(img => img.classList.remove("active"));
+  slides[current].classList.add("active");
 }
+
+// 自动
+let auto = setInterval(() => {
+  current = (current + 1) % slides.length;
+  document.querySelector('.slides').style.transform =
+    `translateX(-${current * 100}%)`;
+  updateSlides();
+}, 4000);
+
+// 手动
+document.querySelector('.next').onclick = () => {
+  clearInterval(auto);
+  current = (current + 1) % slides.length;
+  document.querySelector('.slides').style.transform =
+    `translateX(-${current * 100}%)`;
+  updateSlides();
+};
+
+document.querySelector('.prev').onclick = () => {
+  clearInterval(auto);
+  current = (current - 1 + slides.length) % slides.length;
+  document.querySelector('.slides').style.transform =
+    `translateX(-${current * 100}%)`;
+  updateSlides();
+};
 </script></body>
 </html>
