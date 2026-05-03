@@ -88,13 +88,12 @@ body {
   border-radius: 20px;
 }
 
-/* 📸 翻页效果 */
+/* 📸 翻页 */
 .slider {
-  width: 90%;
-  max-width: 700px;
-  height: 400px;
+  width: 95%;
+  max-width: 750px;
+  height: 450px;
   margin: 30px auto;
-  position: relative;
   overflow: hidden;
   border-radius: 15px;
 }
@@ -106,13 +105,13 @@ body {
 
 .slider img {
   width: 100%;
-  height: 400px;
-  object-fit: contain; /* 不裁剪 */
+  height: 450px;
+  object-fit: contain;
   flex-shrink: 0;
   border-radius: 15px;
 }
 
-/* 🌸 飘花 */
+/* 🌸 落花 */
 .flower {
   position: fixed;
   top: -50px;
@@ -122,19 +121,11 @@ body {
 }
 
 @keyframes fall {
-  to {
-    transform: translateY(110vh);
-  }
+  to { transform: translateY(110vh); }
 }
 
-h1 {
-  text-align: center;
-  color: #ff5c8a;
-}
-
-p {
-  line-height: 1.8;
-}
+h1 { text-align: center; color: #ff5c8a; }
+p { line-height: 1.8; }
 </style>
 </head>
 
@@ -155,22 +146,60 @@ p {
 
 <!-- 💌 -->
 <div class="card" id="mainContent" style="display:none;">
+
 <h1>❤️ 母亲节快乐 ❤️</h1>
 
 <p>
 那两天的画面，我到现在都不敢多想。<br><br>
+
 你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
-我连替你分担一点痛都不行，只能看着门关上……<br><br>
-Edna那一次是这样，这一次Enya也是。<br><br>
-你一个人承受着无法想象的疼，把我们的两个女儿带到这个世界。😖<br><br>
+我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。<br><br>
+
+Edna那一次是这样，<br>
+这一次Enya也是。<br><br>
+
+你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。<br>
+而我，却只能在外面等。😖<br><br>
+
+后来我才发现，原来我一直以为的“辛苦”，根本不算什么。<br>
 真正辛苦的人，是你。<br><br>
-谢谢你，把Edna和Enya带来这个世界 ❤️<br>
-谢谢你，一直撑着这个家 ❤️<br><br>
+
+伤口还没好，你就已经开始抱着孩子；<br>
+身体还没恢复，你就整夜醒来喂奶、哄她们。<br>
+你很少说累，但我看得出来，你只是习惯忍着。<br><br>
+
+Edna在慢慢长大，<br>
+Enya在5月2号刚满月。<br>
+而你，从来没有停下来，好好为自己休息过。😢<br><br>
+
+我有时候会觉得心酸，<br>
+因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。<br><br>
+
+如果可以，<br>
+我真的希望那两次躺在手术台上的人是我。<br>
+至少，不是你一个人去承受那一切。<br><br>
+
+母亲节要到了，<br>
+我不太会说什么好听的话，<br>
+但我想让你知道——<br><br>
+
+那扇手术室的门关上的那一刻，<br>
+我才真正明白，你对这个家的意义。<br><br>
+
+不是因为你做了多少事，<br>
+而是因为你，真的把自己的一切都给了我们。❤️<br><br>
+
+谢谢你，把Edna和Enya带来这个世界。<br>
+谢谢你，一直撑着这个家。❤️<br><br>
+
+以后，不会再让你一个人硬撑了。<br>
+我会在，你累的时候我来扛，你痛的时候我在旁边。🫂<br><br>
+
 你不只是她们的妈妈，<br><br>
-你也是我最心疼、最舍不得的人 ❤️❤️❤️
+你也是我最心疼、最舍不得的人。❤️❤️❤️
 </p>
 
-<!-- 📸 真·翻页 -->
+<!-- 📸 五张 -->
 <div class="slider">
   <div class="slider-track" id="track">
     <img src="photo1.jpg">
@@ -188,8 +217,6 @@ Edna那一次是这样，这一次Enya也是。<br><br>
 </div>
 
 <script>
-
-// 🎁 开礼物
 function openGift(el){
   el.classList.add("open");
 
@@ -210,17 +237,14 @@ function openGift(el){
   },600);
 }
 
-// 📸 真翻页
 let i=0;
 const track=document.getElementById("track");
-const total=5;
 
 setInterval(()=>{
-  i=(i+1)%total;
+  i=(i+1)%5;
   track.style.transform=`translateX(-${i*100}%)`;
 },3000);
 
-// 🌸 飘花
 function flower(){
   let f=document.createElement("div");
   f.className="flower";
@@ -231,7 +255,6 @@ function flower(){
   setTimeout(()=>f.remove(),8000);
 }
 setInterval(flower,400);
-
 </script>
 
 </body>
