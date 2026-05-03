@@ -18,7 +18,6 @@ body {
   flex-direction: column;
 }
 
-/* ✨ 文字 */
 .intro-text {
   text-align: center;
   color: #ff6f91;
@@ -105,7 +104,7 @@ body {
   to {opacity: 1; transform: translateY(0);}
 }
 
-/* 📸 滑动相册 */
+/* 📸 相册 */
 .slider {
   position: relative;
   overflow: hidden;
@@ -124,7 +123,6 @@ body {
   border-radius: 10px;
 }
 
-/* 按钮 */
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -163,7 +161,7 @@ p {
     transform: translateY(110vh);
   }
 }
-</style></head><body><!-- 🎁 礼物 --><div id="giftScreen">
+</style></head><body><!-- 🎁 开场 --><div id="giftScreen">
   <h2 class="intro-text">
     Dear，<br>
     母亲节快乐 ❤️<br><br>
@@ -173,7 +171,65 @@ p {
     <div class="box"></div>
   </div>  <p class="hint">点一下打开 🎁</p>
 </div><!-- 💖 内容 --><div class="card" id="mainContent" style="display:none;"><h1>❤️ 母亲节快乐 ❤️</h1><p>
-（你的信内容保持不变，这里我省略）
+那两天的画面，我到现在都不敢多想。<br><br>你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
+我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。
+<br><br>
+
+Edna那一次是这样，<br>
+这一次Enya也是。
+<br><br>
+
+你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。<br>
+而我，却只能在外面等。😖
+<br><br>
+
+后来我才发现，原来我一直以为的“辛苦”，根本不算什么。<br>
+真正辛苦的人，是你。
+<br><br>
+
+伤口还没好，你就已经开始抱着孩子；<br>
+身体还没恢复，你就整夜醒来喂奶、哄她们。<br>
+你很少说累，但我看得出来，你只是习惯忍着。
+<br><br>
+
+Edna在慢慢长大，<br>
+Enya在5月2号刚满月。<br>
+而你，从来没有停下来，好好为自己休息过。😢
+<br><br>
+
+我有时候会觉得心酸，<br>
+因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。
+<br><br>
+
+如果可以，<br>
+我真的希望那两次躺在手术台上的人是我。<br>
+至少，不是你一个人去承受那一切。
+<br><br>
+
+母亲节要到了，<br>
+我不太会说什么好听的话，<br>
+但我想让你知道——
+<br><br>
+
+那扇手术室的门关上的那一刻，<br>
+我才真正明白，你对这个家的意义。
+<br><br>
+
+不是因为你做了多少事，<br>
+而是因为你，真的把自己的一切都给了我们。❤️
+<br><br>
+
+谢谢你，把Edna和Enya带来这个世界。<br>
+谢谢你，一直撑着这个家。❤️
+<br><br>
+
+以后，不会再让你一个人硬撑了。<br>
+我会在，你累的时候我来扛，你痛的时候我在旁边。🫂
+<br><br>
+
+你不只是她们的妈妈，<br><br>
+你也是我最心疼、最舍不得的人。❤️❤️❤️
+
 </p><!-- 📸 相册 --><div class="slider">
   <div class="slides">
     <img src="photo1.jpg">
@@ -186,11 +242,10 @@ p {
 </div><audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio></div><script>
-// 🎁 打开礼物 + 音乐
+// 🎁 打开礼物
 function openGift(el) {
   el.classList.add("open");
 
-  // 💖 爱心
   for (let i = 0; i < 15; i++) {
     const heart = document.createElement("div");
     heart.className = "heart";
@@ -201,7 +256,6 @@ function openGift(el) {
     setTimeout(() => heart.remove(), 2000);
   }
 
-  // 🎵 音乐淡入
   const music = document.getElementById("music");
   music.volume = 0;
   music.play();
@@ -232,7 +286,6 @@ let autoSlide = setInterval(() => {
   slideContainer.style.transform = `translateX(-${current * 100}%)`;
 }, 4000);
 
-// 👉 点击停止自动
 document.querySelector('.next').onclick = () => {
   clearInterval(autoSlide);
   current = (current + 1) % total;
@@ -253,7 +306,6 @@ function createFlower() {
   flower.style.left = Math.random() * 100 + 'vw';
   flower.style.animationDuration = (3 + Math.random() * 5) + 's';
   document.body.appendChild(flower);
-
   setTimeout(() => flower.remove(), 8000);
 }
 setInterval(createFlower, 500);
