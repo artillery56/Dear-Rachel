@@ -23,12 +23,6 @@ body {
   color: #ff6f91;
   margin-bottom: 30px;
   line-height: 1.8;
-  animation: fadeText 2s ease;
-}
-
-@keyframes fadeText {
-  from { opacity: 0; transform: translateY(-10px);}
-  to { opacity: 1; transform: translateY(0);}
 }
 
 .hint {
@@ -96,12 +90,6 @@ body {
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  animation: fadeIn 2s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
 }
 
 /* 📸 相册 */
@@ -146,21 +134,6 @@ h1 {
 p {
   line-height: 1.8;
 }
-
-/* 🌸 飘花 */
-.flower {
-  position: fixed;
-  top: -50px;
-  color: pink;
-  font-size: 20px;
-  animation: fall linear infinite;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-  }
-}
 </style></head><body><!-- 🎁 开场 --><div id="giftScreen">
   <h2 class="intro-text">
     Dear，<br>
@@ -170,7 +143,7 @@ p {
     <div class="lid"></div>
     <div class="box"></div>
   </div>  <p class="hint">点一下打开 🎁</p>
-</div><!-- 💖 内容 --><div class="card" id="mainContent" style="display:none;"><h1>❤️ 母亲节快乐 ❤️</h1><p>
+</div><!-- 💖 内容（默认直接显示，避免空白） --><div class="card" id="mainContent"><h1>❤️ 母亲节快乐 ❤️</h1><p>
 那两天的画面，我到现在都不敢多想。<br><br>你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
 我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。
 <br><br>
@@ -230,84 +203,41 @@ Enya在5月2号刚满月。<br>
 你不只是她们的妈妈，<br><br>
 你也是我最心疼、最舍不得的人。❤️❤️❤️
 
-</p><!-- 📸 相册 --><div class="slider">
+</p><div class="slider">
   <div class="slides">
     <img src="photo1.jpg">
     <img src="photo2.jpg">
     <img src="photo3.jpg">
-    <img src="photo4.jpg">
   </div><button class="prev">‹</button>
 <button class="next">›</button>
 
 </div><audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio></div><script>
-// 🎁 打开礼物
+// 🎁 打开礼物（不会再影响内容）
 function openGift(el) {
   el.classList.add("open");
 
-  for (let i = 0; i < 15; i++) {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.top = "60vh";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 2000);
-  }
+  document.getElementById("giftScreen").style.display = "none";
 
   const music = document.getElementById("music");
-  music.volume = 0;
-  music.play();
-
-  let v = 0;
-  let fade = setInterval(() => {
-    if (v < 0.3) {
-      v += 0.02;
-      music.volume = v;
-    } else {
-      clearInterval(fade);
-    }
-  }, 100);
-
-  setTimeout(() => {
-    document.getElementById("giftScreen").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
-  }, 600);
+  if (music) {
+    music.volume = 0.3;
+    music.play().catch(() => {});
+  }
 }
 
-// 📸 自动翻页
+// 📸 自动翻页（加保护，不会报错）
 let current = 0;
 const slideContainer = document.querySelector('.slides');
-const total = document.querySelectorAll('.slides img').length;
 
-let autoSlide = setInterval(() => {
-  current = (current + 1) % total;
-  slideContainer.style.transform = `translateX(-${current * 100}%)`;
-}, 4000);
+if (slideContainer) {
+  const total = document.querySelectorAll('.slides img').length;
 
-document.querySelector('.next').onclick = () => {
-  clearInterval(autoSlide);
-  current = (current + 1) % total;
-  slideContainer.style.transform = `translateX(-${current * 100}%)`;
-};
-
-document.querySelector('.prev').onclick = () => {
-  clearInterval(autoSlide);
-  current = (current - 1 + total) % total;
-  slideContainer.style.transform = `translateX(-${current * 100}%)`;
-};
-
-// 🌸 飘花
-function createFlower() {
-  const flower = document.createElement('div');
-  flower.classList.add('flower');
-  flower.innerHTML = '🌸';
-  flower.style.left = Math.random() * 100 + 'vw';
-  flower.style.animationDuration = (3 + Math.random() * 5) + 's';
-  document.body.appendChild(flower);
-  setTimeout(() => flower.remove(), 8000);
+  setInterval(() => {
+    current = (current + 1) % total;
+    slideContainer.style.transform = `translateX(-${current * 100}%)`;
+  }, 4000);
 }
-setInterval(createFlower, 500);
 </script></body>
 </html>
