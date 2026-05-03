@@ -61,7 +61,7 @@ body {
   transform: rotateX(120deg) translateY(-20px);
 }
 
-/* 💖 爱心 */
+/* ❤️ 爱心 */
 .heart {
   position: fixed;
   font-size: 20px;
@@ -75,42 +75,44 @@ body {
   }
 }
 
-/* 🌸 卡片 */
+/* 💖 卡片 */
 .card {
-  max-width: 900px;
-  margin: 40px auto;
+  max-width: 95%;
+  margin: 30px auto;
   background: white;
-  padding: 30px;
+  padding: 20px;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-/* 🎬 电影感相册 */
+/* 🎬 相册 */
 .slider {
   position: relative;
   overflow: hidden;
-  max-width: 600px;
-  margin: 40px auto;
+  width: 100%;
+  max-width: 420px;
+  margin: 30px auto;
 }
 
 .slides {
   display: flex;
-  transition: transform 0.8s ease;
+  transition: transform 0.6s ease;
 }
 
 .slides img {
   width: 100%;
-  height: 320px;
+  height: 280px;
   object-fit: cover;
   flex-shrink: 0;
   border-radius: 15px;
-  transform: scale(0.9);
-  opacity: 0.5;
-  transition: all 0.6s ease;
+
+  transform: scale(0.95);
+  opacity: 0.7;
+  transition: all 0.4s ease;
 }
 
 .slides img.active {
-  transform: scale(1.05);
+  transform: scale(1.08);
   opacity: 1;
 }
 
@@ -121,14 +123,14 @@ body {
   transform: translateY(-50%);
   background: rgba(255,255,255,0.8);
   border: none;
-  font-size: 26px;
-  padding: 8px 14px;
+  font-size: 22px;
+  padding: 6px 12px;
   cursor: pointer;
   border-radius: 50%;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
+.prev { left: 5px; }
+.next { right: 5px; }
 
 h1 {
   text-align: center;
@@ -138,7 +140,7 @@ h1 {
 p {
   line-height: 1.8;
 }
-</style></head><body><!-- 🎁 开场 --><div id="giftScreen">
+</style></head><body><!-- 🎁 礼物 --><div id="giftScreen">
   <h2 class="intro-text">
     Dear，<br>
     母亲节快乐 ❤️<br><br>
@@ -147,67 +149,22 @@ p {
     <div class="lid"></div>
     <div class="box"></div>
   </div>
-</div><!-- 💖 内容 --><div class="card" id="mainContent"><h1>❤️ 母亲节快乐 ❤️</h1><p>
-那两天的画面，我到现在都不敢多想。<br><br>你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
-我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。
-<br><br>
-
-Edna那一次是这样，<br>
-这一次Enya也是。
-<br><br>
-
-你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。<br>
-而我，却只能在外面等。😖
-<br><br>
-
-后来我才发现，原来我一直以为的“辛苦”，根本不算什么。<br>
-真正辛苦的人，是你。
-<br><br>
-
-伤口还没好，你就已经开始抱着孩子；<br>
-身体还没恢复，你就整夜醒来喂奶、哄她们。<br>
-你很少说累，但我看得出来，你只是习惯忍着。
-<br><br>
-
-Edna在慢慢长大，<br>
-Enya在5月2号刚满月。<br>
-而你，从来没有停下来，好好为自己休息过。😢
-<br><br>
-
-我有时候会觉得心酸，<br>
-因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。
-<br><br>
-
-如果可以，<br>
-我真的希望那两次躺在手术台上的人是我。<br>
-至少，不是你一个人去承受那一切。
-<br><br>
-
-母亲节要到了，<br>
-我不太会说什么好听的话，<br>
-但我想让你知道——
-<br><br>
-
-那扇手术室的门关上的那一刻，<br>
-我才真正明白，你对这个家的意义。
-<br><br>
-
-不是因为你做了多少事，<br>
-而是因为你，真的把自己的一切都给了我们。❤️
-<br><br>
-
-谢谢你，把Edna和Enya带来这个世界。<br>
-谢谢你，一直撑着这个家。❤️
-<br><br>
-
-以后，不会再让你一个人硬撑了。<br>
-我会在，你累的时候我来扛，你痛的时候我在旁边。🫂
-<br><br>
-
+</div><!-- 💖 内容 --><div class="card" id="mainContent" style="display:none;"><h1>❤️ 母亲节快乐 ❤️</h1><p>
+那两天的画面，我到现在都不敢多想。<br><br>
+你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
+我连替你分担一点痛都不行，只能看着门关上。<br><br>
+Edna那一次是这样，这一次Enya也是。<br><br>
+你一个人承受着无法想象的疼，把我们的两个女儿带到这个世界。😖<br><br>
+后来我才发现，真正辛苦的人，是你。<br><br>
+你几乎没有为自己停下来过。😢<br><br>
+如果可以，我希望那两次在手术台上的人是我。<br><br>
+母亲节要到了，我想让你知道——<br><br>
+你对这个家的意义，是你把自己的一切都给了我们。❤️<br><br>
+谢谢你，把Edna和Enya带来这个世界。❤️<br><br>
+以后，我会在你累的时候替你扛，在你痛的时候陪着你。🫂<br><br>
 你不只是她们的妈妈，<br><br>
 你也是我最心疼、最舍不得的人。❤️❤️❤️
-
-</p><!-- 📸 相册 --><div class="slider">
+</p><!-- 📸 5张 --><div class="slider">
   <div class="slides">
     <img src="photo1.jpg" class="active">
     <img src="photo2.jpg">
@@ -220,6 +177,39 @@ Enya在5月2号刚满月。<br>
 </div><audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio></div><script>
+document.addEventListener("DOMContentLoaded", function() {
+
+let current = 0;
+const slides = document.querySelectorAll('.slides img');
+const container = document.querySelector('.slides');
+
+function update() {
+  slides.forEach(img => img.classList.remove("active"));
+  slides[current].classList.add("active");
+  container.style.transform = `translateX(-${current * 100}%)`;
+}
+
+// 自动播放
+let auto = setInterval(() => {
+  current = (current + 1) % slides.length;
+  update();
+}, 3500);
+
+// 按钮
+document.querySelector('.next').onclick = () => {
+  clearInterval(auto);
+  current = (current + 1) % slides.length;
+  update();
+};
+
+document.querySelector('.prev').onclick = () => {
+  clearInterval(auto);
+  current = (current - 1 + slides.length) % slides.length;
+  update();
+};
+
+});
+
 // 🎁 打开礼物
 function openGift(el) {
   el.classList.add("open");
@@ -250,41 +240,8 @@ function openGift(el) {
 
   setTimeout(() => {
     document.getElementById("giftScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
   }, 600);
 }
-
-// 🎬 电影感翻页
-let current = 0;
-const slides = document.querySelectorAll('.slides img');
-
-function updateSlides() {
-  slides.forEach(img => img.classList.remove("active"));
-  slides[current].classList.add("active");
-}
-
-// 自动
-let auto = setInterval(() => {
-  current = (current + 1) % slides.length;
-  document.querySelector('.slides').style.transform =
-    `translateX(-${current * 100}%)`;
-  updateSlides();
-}, 4000);
-
-// 手动
-document.querySelector('.next').onclick = () => {
-  clearInterval(auto);
-  current = (current + 1) % slides.length;
-  document.querySelector('.slides').style.transform =
-    `translateX(-${current * 100}%)`;
-  updateSlides();
-};
-
-document.querySelector('.prev').onclick = () => {
-  clearInterval(auto);
-  current = (current - 1 + slides.length) % slides.length;
-  document.querySelector('.slides').style.transform =
-    `translateX(-${current * 100}%)`;
-  updateSlides();
-};
 </script></body>
 </html>
