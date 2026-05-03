@@ -7,31 +7,30 @@
 <style>
 body {
   margin: 0;
-  font-family: "Microsoft YaHei", sans-serif;
+  font-family: "Microsoft YaHei";
   background: linear-gradient(135deg, #ffd6e0, #ffe9ec);
   overflow-x: hidden;
 }
 
-/* 🎁 礼物页 */
+/* 🎁 礼物 */
 #giftScreen {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 }
 
 .gift-text {
+  font-size: 20px;
+  color: #ff5c8a;
   text-align: center;
   margin-bottom: 20px;
-  color: #ff5c8a;
-  font-size: 20px;
-  line-height: 1.6;
 }
 
 .gift-box {
-  width: 130px;
-  height: 130px;
+  width: 120px;
+  height: 120px;
   position: relative;
   cursor: pointer;
   animation: bounce 1.5s infinite;
@@ -43,7 +42,7 @@ body {
 
 .box {
   width: 100%;
-  height: 90px;
+  height: 80px;
   background: #ff8aa0;
   position: absolute;
   bottom: 0;
@@ -52,7 +51,7 @@ body {
 
 .lid {
   width: 100%;
-  height: 45px;
+  height: 40px;
   background: #ff6f91;
   position: absolute;
   top: 0;
@@ -62,14 +61,14 @@ body {
 }
 
 .open .lid {
-  transform: rotateX(120deg) translateY(-20px);
+  transform: rotateX(120deg);
 }
 
-/* 💖 爱心 */
+/* ❤️ 爱心 */
 .heart {
   position: fixed;
   font-size: 20px;
-  animation: floatUp 2s ease forwards;
+  animation: floatUp 2s forwards;
   z-index: 9999;
 }
 
@@ -80,45 +79,37 @@ body {
   }
 }
 
-/* 🌸 卡片 */
+/* 💌 卡片 */
 .card {
   max-width: 900px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  animation: fadeIn 2s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-/* 📸 电影感轮播 */
-.slider {
-  position: relative;
-  max-width: 650px;
   margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+}
+
+/* 📸 翻页效果 */
+.slider {
+  width: 90%;
+  max-width: 700px;
+  height: 400px;
+  margin: 30px auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 1s ease;
 }
 
 .slider img {
   width: 100%;
-  height: auto;
-  border-radius: 12px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  transform: scale(1.05);
-  transition: all 1s ease;
-}
-
-.slider img.active {
-  opacity: 1;
-  transform: scale(1);
-  position: relative;
+  height: 400px;
+  object-fit: contain; /* 不裁剪 */
+  flex-shrink: 0;
+  border-radius: 15px;
 }
 
 /* 🌸 飘花 */
@@ -128,7 +119,6 @@ body {
   font-size: 22px;
   animation: fall linear infinite;
   z-index: 9999;
-  pointer-events: none;
 }
 
 @keyframes fall {
@@ -150,7 +140,7 @@ p {
 
 <body>
 
-<!-- 🎁 礼物 -->
+<!-- 🎁 -->
 <div id="giftScreen">
   <div class="gift-text">
     Dear，母亲节快乐 ❤️<br>
@@ -163,125 +153,84 @@ p {
   </div>
 </div>
 
-<!-- 💌 内容 -->
+<!-- 💌 -->
 <div class="card" id="mainContent" style="display:none;">
-
 <h1>❤️ 母亲节快乐 ❤️</h1>
 
 <p>
 那两天的画面，我到现在都不敢多想。<br><br>
-
 你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
-我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。<br><br>
-
-Edna那一次是这样，<br>
-这一次Enya也是。<br><br>
-
-你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。<br>
-而我，却只能在外面等。😖<br><br>
-
-后来我才发现，原来我一直以为的“辛苦”，根本不算什么。<br>
+我连替你分担一点痛都不行，只能看着门关上……<br><br>
+Edna那一次是这样，这一次Enya也是。<br><br>
+你一个人承受着无法想象的疼，把我们的两个女儿带到这个世界。😖<br><br>
 真正辛苦的人，是你。<br><br>
-
-伤口还没好，你就已经开始抱着孩子；<br>
-身体还没恢复，你就整夜醒来喂奶、哄她们。<br>
-你很少说累，但我看得出来，你只是习惯忍着。<br><br>
-
-Edna在慢慢长大，<br>
-Enya在5月2号刚满月。<br>
-而你，从来没有停下来，好好为自己休息过。😢<br><br>
-
-我有时候会觉得心酸，<br>
-因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。<br><br>
-
-如果可以，<br>
-我真的希望那两次躺在手术台上的人是我。<br>
-至少，不是你一个人去承受那一切。<br><br>
-
-母亲节要到了，<br>
-我不太会说什么好听的话，<br>
-但我想让你知道——<br><br>
-
-那扇手术室的门关上的那一刻，<br>
-我才真正明白，你对这个家的意义。<br><br>
-
-不是因为你做了多少事，<br>
-而是因为你，真的把自己的一切都给了我们。❤️<br><br>
-
-谢谢你，把Edna和Enya带来这个世界。<br>
-谢谢你，一直撑着这个家。❤️<br><br>
-
-以后，不会再让你一个人硬撑了。<br>
-我会在，你累的时候我来扛，你痛的时候我在旁边。🫂<br><br>
-
+谢谢你，把Edna和Enya带来这个世界 ❤️<br>
+谢谢你，一直撑着这个家 ❤️<br><br>
 你不只是她们的妈妈，<br><br>
-你也是我最心疼、最舍不得的人。❤️❤️❤️
+你也是我最心疼、最舍不得的人 ❤️❤️❤️
 </p>
 
-<!-- 📸 五张照片 -->
+<!-- 📸 真·翻页 -->
 <div class="slider">
-  <img src="photo1.jpg" class="active">
-  <img src="photo2.jpg">
-  <img src="photo3.jpg">
-  <img src="photo4.jpg">
-  <img src="photo5.jpg">
+  <div class="slider-track" id="track">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+  </div>
 </div>
 
 <audio id="music" loop>
-  <source src="music.mp3" type="audio/mpeg">
+  <source src="music.mp3">
 </audio>
 
 </div>
 
 <script>
 
-// 🎁 打开礼物
-function openGift(el) {
+// 🎁 开礼物
+function openGift(el){
   el.classList.add("open");
 
-  for (let i = 0; i < 20; i++) {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.top = "60vh";
-    heart.style.fontSize = (15 + Math.random() * 20) + "px";
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 2000);
+  for(let i=0;i<20;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.top="60vh";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2000);
   }
 
-  setTimeout(() => {
-    document.getElementById("giftScreen").style.display = "none";
-    document.getElementById("mainContent").style.display = "block";
-    document.getElementById("music").play();
-  }, 700);
+  setTimeout(()=>{
+    giftScreen.style.display="none";
+    mainContent.style.display="block";
+    music.play();
+  },600);
 }
 
-// 📸 自动翻页（电影感）
-let index = 0;
-const slides = document.querySelectorAll('.slider img');
+// 📸 真翻页
+let i=0;
+const track=document.getElementById("track");
+const total=5;
 
-setInterval(() => {
-  slides[index].classList.remove('active');
-  index = (index + 1) % slides.length;
-  slides[index].classList.add('active');
-}, 3500);
+setInterval(()=>{
+  i=(i+1)%total;
+  track.style.transform=`translateX(-${i*100}%)`;
+},3000);
 
 // 🌸 飘花
-function createFlower() {
-  const flower = document.createElement('div');
-  flower.classList.add('flower');
-  const arr = ["🌸","💮","🌺"];
-  flower.innerHTML = arr[Math.floor(Math.random()*arr.length)];
-  flower.style.left = Math.random() * 100 + 'vw';
-  flower.style.animationDuration = (3 + Math.random() * 5) + 's';
-  document.body.appendChild(flower);
-
-  setTimeout(() => flower.remove(), 8000);
+function flower(){
+  let f=document.createElement("div");
+  f.className="flower";
+  f.innerHTML=["🌸","💮","🌺"][Math.floor(Math.random()*3)];
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),8000);
 }
-
-setInterval(createFlower, 400);
+setInterval(flower,400);
 
 </script>
 
