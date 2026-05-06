@@ -102,7 +102,7 @@ p { line-height: 1.8; }
   object-fit: contain;
 }
 
-/* 🌸 落花 */
+/* 🌸 */
 .flower {
   position: fixed;
   top: -50px;
@@ -116,18 +116,15 @@ p { line-height: 1.8; }
   to { transform: translateY(110vh); }
 }
 
-/* 🎆 烟花 */
-#fireworks {
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-/* ❤️ */
+/* 🎆 */
 #lovePage {
   display: none;
   background: black;
   height: 100vh;
+}
+
+canvas {
+  display: block;
 }
 </style>
 </head>
@@ -153,21 +150,52 @@ p { line-height: 1.8; }
 Dear, 母亲节快乐。这封信承载了我对你的爱❤️
 <br><br>
 那两天的画面，我到现在都不敢多想。<br><br>
+
 你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
 我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。<br><br>
+
 Edna那一次是这样，<br>
 这一次Enya也是。<br><br>
+
 你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。<br>
 而我，却只能在外面等。😖<br><br>
+
 后来我才发现，原来我一直以为的“辛苦”，根本不算什么。<br>
 真正辛苦的人，是你。<br><br>
+
 伤口还没好，你就已经开始抱着孩子；<br>
-身体还没恢复，你就整夜醒来喂奶、哄她们。<br><br>
+身体还没恢复，你就整夜醒来喂奶、哄她们。<br>
+你很少说累，但我看得出来，你只是习惯忍着。<br><br>
+
 Edna在慢慢长大，<br>
-Enya在5月2号刚满月。<br><br>
-谢谢你，把Edna和Enya带来这个世界。❤️<br>
+Enya在5月2号刚满月。<br>
+而你，从来没有停下来，好好为自己休息过。😢<br><br>
+
+我有时候会觉得心酸，<br>
+因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。<br><br>
+
+如果可以，<br>
+我真的希望那两次躺在手术台上的人是我。<br>
+至少，不是你一个人去承受那一切。<br><br>
+
+母亲节也到了，<br>
+我比较木头，我也不太会说什么好听的话，<br>
+但我想让你知道——<br><br>
+
+那扇手术室的门关上的那一刻，<br>
+我才真正明白，你对这个家的意义。<br><br>
+
+不是因为你做了多少事，<br>
+而是因为你，真的把自己的一切都给了我们。❤️<br><br>
+
+谢谢你，把Edna和Enya带来这个世界。<br>
 谢谢你，一直撑着这个家。❤️<br><br>
-你不只是她们的妈妈，<br>
+
+未来发生什么我们都不知道。<br>
+但是，我可以很负责任的，并且对你许下承诺<br>
+未来的日子，我会在，你累的时候我来扛，你痛的时候我在旁边。🫂<br><br>
+
+你不只是她们的妈妈，<br><br>
 你也是我最心疼、最舍不得的人。❤️❤️❤️
 </p>
 
@@ -199,7 +227,7 @@ Enya在5月2号刚满月。<br><br>
 </audio>
 </div>
 
-<!-- ❤️ 烟花页 -->
+<!-- 🎆 -->
 <div id="lovePage">
 <canvas id="fireworks"></canvas>
 </div>
@@ -229,7 +257,7 @@ function goLove(){
   startFireworks();
 }
 
-// 🌸 不同页面不同密度
+// 🌸 落花
 function flower(){
   let f=document.createElement("div");
   f.className="flower";
@@ -241,7 +269,7 @@ function flower(){
 }
 setInterval(flower,500);
 
-// 📸 自动滑动
+// 📸 滑动
 let i=0;
 const track=document.getElementById("track");
 setInterval(()=>{
@@ -249,52 +277,70 @@ setInterval(()=>{
   track.style.transform=`translateX(-${i*100}%)`;
 },3000);
 
-// 🎆 烟花文字
+// 🎆 烟花拼字
 function startFireworks(){
-  const canvas=document.getElementById("fireworks");
-  const ctx=canvas.getContext("2d");
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
+  const canvas = document.getElementById("fireworks");
+  const ctx = canvas.getContext("2d");
 
-  let particles=[];
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 
-  function createFirework(x,y,text){
-    for(let i=0;i<100;i++){
-      particles.push({
-        x:x,
-        y:y,
-        vx:(Math.random()-0.5)*5,
-        vy:(Math.random()-0.5)*5,
-        alpha:1
-      });
+  let particles = [];
+
+  function getTextPoints(text){
+    let off = document.createElement("canvas");
+    let offCtx = off.getContext("2d");
+
+    off.width = canvas.width;
+    off.height = canvas.height;
+
+    offCtx.fillStyle = "white";
+    offCtx.font = "bold 100px Arial";
+    offCtx.textAlign = "center";
+    offCtx.fillText(text, off.width/2, off.height/2);
+
+    let imageData = offCtx.getImageData(0,0,off.width,off.height);
+    let points = [];
+
+    for(let y=0;y<off.height;y+=6){
+      for(let x=0;x<off.width;x+=6){
+        let index = (y*off.width + x)*4;
+        if(imageData.data[index+3] > 150){
+          points.push({x,y});
+        }
+      }
     }
+    return points;
   }
 
-  function drawText(){
-    ctx.fillStyle="white";
-    ctx.font="50px Arial";
-    ctx.fillText("我爱你 ❤️", canvas.width/2-120, canvas.height/2);
+  const textPoints = getTextPoints("我爱你 ❤️");
+
+  function createFirework(){
+    textPoints.forEach(p=>{
+      particles.push({
+        x: canvas.width/2,
+        y: canvas.height/2,
+        tx: p.x,
+        ty: p.y,
+        speed: Math.random()*0.05 + 0.02
+      });
+    });
   }
+
+  createFirework();
 
   function animate(){
-    ctx.fillStyle="rgba(0,0,0,0.2)";
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
     ctx.fillRect(0,0,canvas.width,canvas.height);
 
     particles.forEach(p=>{
-      p.x+=p.vx;
-      p.y+=p.vy;
-      p.alpha-=0.01;
-      ctx.fillStyle=`rgba(255,100,150,${p.alpha})`;
-      ctx.fillRect(p.x,p.y,3,3);
+      p.x += (p.tx - p.x)*p.speed;
+      p.y += (p.ty - p.y)*p.speed;
+
+      ctx.fillStyle = "rgb(255,100,150)";
+      ctx.fillRect(p.x,p.y,2,2);
     });
 
-    particles=particles.filter(p=>p.alpha>0);
-
-    if(particles.length<50){
-      createFirework(canvas.width/2, canvas.height/2);
-    }
-
-    drawText();
     requestAnimationFrame(animate);
   }
 
