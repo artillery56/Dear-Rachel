@@ -116,15 +116,12 @@ p { line-height: 1.8; }
   to { transform: translateY(110vh); }
 }
 
-/* 🖤 最后一页（关键修复） */
+/* 🖤 最后一页 */
 #lovePage {
   display: none;
   height: 100vh;
   background: black;
   color: white;
-
-  /* ✅ 居中关键 */
-  display: none;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -157,7 +154,8 @@ p { line-height: 1.8; }
 <div class="page" id="page2">
 <h1>❤️ 母亲节快乐 ❤️</h1>
 
-<p>Dear, 母亲节快乐。这封信承载了我对你的爱❤️
+<p>
+Dear, 母亲节快乐。这封信承载了我对你的爱❤️
 <br><br>
 那两天的画面，我到现在都不敢多想。<br><br>
 
@@ -241,7 +239,7 @@ Enya在5月2号刚满月。<br>
 </audio>
 </div>
 
-<!-- 🖤 第四页（已修复分离） -->
+<!-- 🖤 第四页 -->
 <div id="lovePage">
   <div class="content">
     有的人来到这个世界是为了找另一半来填满他的世界<br>
@@ -274,10 +272,7 @@ function goPage3(){
 
 function goLove(){
   page3.style.display="none";
-
-  // ✅ 修复关键：必须改成 flex 才会居中
   lovePage.style.display="flex";
-
   music2.play();
 }
 
@@ -293,13 +288,15 @@ function flower(){
 }
 setInterval(flower,500);
 
-/* 📸 */
-let i=0;
-const track=document.getElementById("track");
+/* 📸 ✅ 修复重点 */
+let i = 0;
+const track = document.getElementById("track");
+const total = track.children.length;
+
 setInterval(()=>{
-  i=(i+1)%5;
-  track.style.transform=`translateX(-${i*100}%)`;
-},3000);
+  i = (i + 1) % total;
+  track.style.transform = `translateX(-${i * 100}%)`;
+}, 3000);
 
 </script>
 
