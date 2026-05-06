@@ -12,7 +12,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 🎁 开礼物 */
+/* 🎁 第一页 */
 #giftScreen {
   height: 100vh;
   display: flex;
@@ -68,7 +68,6 @@ body {
 }
 
 h1 { text-align: center; color: #ff5c8a; }
-
 p { line-height: 1.8; }
 
 .next-btn {
@@ -103,7 +102,7 @@ p { line-height: 1.8; }
   object-fit: contain;
 }
 
-/* 🌸 花 */
+/* 🌸 */
 .flower {
   position: fixed;
   top: -50px;
@@ -117,20 +116,22 @@ p { line-height: 1.8; }
   to { transform: translateY(110vh); }
 }
 
-/* 🖤 最后一页（清晰文字） */
+/* 🖤 最后一页（关键修复） */
 #lovePage {
   display: none;
   height: 100vh;
   background: black;
   color: white;
-  display: flex;
+
+  /* ✅ 居中关键 */
+  display: none;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 40px;
 }
 
-#lovePage div {
+#lovePage .content {
   max-width: 800px;
   font-size: 22px;
   line-height: 2;
@@ -236,9 +237,9 @@ Enya在5月2号刚满月。<br>
 </audio>
 </div>
 
-<!-- 🖤 第四页 -->
+<!-- 🖤 第四页（已修复分离） -->
 <div id="lovePage">
-  <div>
+  <div class="content">
     有的人来到这个世界是为了找另一半来填满他的世界<br>
     找错或找不到，孤独一生<br>
     可一旦找到了，至死不渝<br><br>
@@ -249,6 +250,7 @@ Enya在5月2号刚满月。<br>
 </div>
 
 <script>
+
 function openGift(el){
   el.classList.add("open");
   setTimeout(()=>{
@@ -268,13 +270,14 @@ function goPage3(){
 
 function goLove(){
   page3.style.display="none";
+
+  // ✅ 修复关键：必须改成 flex 才会居中
   lovePage.style.display="flex";
 
-  // ✅ 不停音乐（关键）
   music2.play();
 }
 
-/* 🌸 花 */
+/* 🌸 */
 function flower(){
   let f=document.createElement("div");
   f.className="flower";
@@ -286,13 +289,14 @@ function flower(){
 }
 setInterval(flower,500);
 
-/* 📸 slider */
+/* 📸 */
 let i=0;
 const track=document.getElementById("track");
 setInterval(()=>{
   i=(i+1)%5;
   track.style.transform=`translateX(-${i*100}%)`;
 },3000);
+
 </script>
 
 </body>
