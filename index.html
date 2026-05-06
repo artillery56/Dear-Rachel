@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: "Microsoft YaHei";
   background: linear-gradient(135deg, #ffd6e0, #ffe9ec);
+  overflow-x: hidden;
 }
 
 /* 🎁 */
@@ -69,7 +70,6 @@ body {
 h1 { text-align: center; color: #ff5c8a; }
 p { line-height: 1.8; }
 
-/* 按钮 */
 .next-btn {
   display: block;
   margin: 30px auto;
@@ -78,55 +78,56 @@ p { line-height: 1.8; }
   color: white;
   border: none;
   border-radius: 20px;
-  font-size: 16px;
   cursor: pointer;
 }
 
-/* 📸 修复后的轮播 */
+/* 📸 */
 .slider {
   width: 100%;
   max-width: 750px;
   height: 450px;
   margin: 30px auto;
   overflow: hidden;
-  border-radius: 15px;
 }
 
 .slider-track {
   display: flex;
-  width: 100%;
-  transition: transform 0.8s ease-in-out;
+  transition: transform 0.8s ease;
 }
 
 .slider img {
   width: 100%;
-  min-width: 100%; /* 🔥 关键修复 */
+  min-width: 100%;
   height: 450px;
   object-fit: contain;
 }
 
-/* ❤️ 最后一页 */
+/* 🌸 落花 */
+.flower {
+  position: fixed;
+  top: -50px;
+  font-size: 22px;
+  pointer-events: none;
+  z-index: 9999;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+
+/* 🎆 烟花 */
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+/* ❤️ */
 #lovePage {
   display: none;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
   background: black;
-  color: white;
-  font-size: 42px;
-}
-
-.love-text {
-  opacity: 0;
-  transform: scale(0.8);
-  animation: fadeIn 3s forwards;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: scale(1.1);
-  }
+  height: 100vh;
 }
 </style>
 </head>
@@ -135,7 +136,7 @@ p { line-height: 1.8; }
 
 <!-- 🎁 -->
 <div id="giftScreen">
-  <div style="margin-bottom:20px;color:#ff5c8a;">
+  <div style="color:#ff5c8a;margin-bottom:20px;">
     Dear，母亲节快乐 ❤️<br>打开这个礼物 🎁
   </div>
   <div class="gift-box" onclick="openGift(this)">
@@ -144,61 +145,29 @@ p { line-height: 1.8; }
   </div>
 </div>
 
-<!-- 💌 信 -->
+<!-- 💌 -->
 <div class="page" id="page2">
-
 <h1>❤️ 母亲节快乐 ❤️</h1>
 
 <p>
 Dear, 母亲节快乐。这封信承载了我对你的爱❤️
 <br><br>
 那两天的画面，我到现在都不敢多想。<br><br>
-
 你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
 我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。<br><br>
-
 Edna那一次是这样，<br>
 这一次Enya也是。<br><br>
-
 你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。<br>
 而我，却只能在外面等。😖<br><br>
-
 后来我才发现，原来我一直以为的“辛苦”，根本不算什么。<br>
 真正辛苦的人，是你。<br><br>
-
 伤口还没好，你就已经开始抱着孩子；<br>
-身体还没恢复，你就整夜醒来喂奶、哄她们。<br>
-你很少说累，但我看得出来，你只是习惯忍着。<br><br>
-
+身体还没恢复，你就整夜醒来喂奶、哄她们。<br><br>
 Edna在慢慢长大，<br>
-Enya在5月2号刚满月。<br>
-而你，从来没有停下来，好好为自己休息过。😢<br><br>
-
-我有时候会觉得心酸，<br>
-因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。<br><br>
-
-如果可以，<br>
-我真的希望那两次躺在手术台上的人是我。<br>
-至少，不是你一个人去承受那一切。<br><br>
-
-母亲节也到了，<br>
-我比较木头，我也不太会说什么好听的话，<br>
-但我想让你知道——<br><br>
-
-那扇手术室的门关上的那一刻，<br>
-我才真正明白，你对这个家的意义。<br><br>
-
-不是因为你做了多少事，<br>
-而是因为你，真的把自己的一切都给了我们。❤️<br><br>
-
-谢谢你，把Edna和Enya带来这个世界。<br>
+Enya在5月2号刚满月。<br><br>
+谢谢你，把Edna和Enya带来这个世界。❤️<br>
 谢谢你，一直撑着这个家。❤️<br><br>
-
-未来发生什么我们都不知道。<br>
-但是，我可以很负责任的，并且对你许下承诺<br>
-未来的日子，我会在，你累的时候我来扛，你痛的时候我在旁边。🫂<br><br>
-
-你不只是她们的妈妈，<br><br>
+你不只是她们的妈妈，<br>
 你也是我最心疼、最舍不得的人。❤️❤️❤️
 </p>
 
@@ -207,12 +176,10 @@ Enya在5月2号刚满月。<br>
 <audio id="music1" loop>
   <source src="music.mp3">
 </audio>
-
 </div>
 
-<!-- 📸 照片 -->
+<!-- 📸 -->
 <div class="page" id="page3">
-
 <h1>❤️ 我们的回忆 ❤️</h1>
 
 <div class="slider">
@@ -230,15 +197,15 @@ Enya在5月2号刚满月。<br>
 <audio id="music2" loop>
   <source src="music2.mp3">
 </audio>
-
 </div>
 
-<!-- ❤️ 最后一页 -->
+<!-- ❤️ 烟花页 -->
 <div id="lovePage">
-  <div class="love-text">我爱你 ❤️</div>
+<canvas id="fireworks"></canvas>
 </div>
 
 <script>
+// 页面切换
 function openGift(el){
   el.classList.add("open");
   setTimeout(()=>{
@@ -257,17 +224,82 @@ function goPage3(){
 
 function goLove(){
   page3.style.display="none";
-  lovePage.style.display="flex";
+  lovePage.style.display="block";
   music2.pause();
+  startFireworks();
 }
 
+// 🌸 不同页面不同密度
+function flower(){
+  let f=document.createElement("div");
+  f.className="flower";
+  f.innerHTML=["🌸","💮","🌺"][Math.floor(Math.random()*3)];
+  f.style.left=Math.random()*100+"vw";
+  f.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),8000);
+}
+setInterval(flower,500);
+
+// 📸 自动滑动
 let i=0;
 const track=document.getElementById("track");
-
 setInterval(()=>{
   i=(i+1)%5;
   track.style.transform=`translateX(-${i*100}%)`;
 },3000);
+
+// 🎆 烟花文字
+function startFireworks(){
+  const canvas=document.getElementById("fireworks");
+  const ctx=canvas.getContext("2d");
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+
+  let particles=[];
+
+  function createFirework(x,y,text){
+    for(let i=0;i<100;i++){
+      particles.push({
+        x:x,
+        y:y,
+        vx:(Math.random()-0.5)*5,
+        vy:(Math.random()-0.5)*5,
+        alpha:1
+      });
+    }
+  }
+
+  function drawText(){
+    ctx.fillStyle="white";
+    ctx.font="50px Arial";
+    ctx.fillText("我爱你 ❤️", canvas.width/2-120, canvas.height/2);
+  }
+
+  function animate(){
+    ctx.fillStyle="rgba(0,0,0,0.2)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    particles.forEach(p=>{
+      p.x+=p.vx;
+      p.y+=p.vy;
+      p.alpha-=0.01;
+      ctx.fillStyle=`rgba(255,100,150,${p.alpha})`;
+      ctx.fillRect(p.x,p.y,3,3);
+    });
+
+    particles=particles.filter(p=>p.alpha>0);
+
+    if(particles.length<50){
+      createFirework(canvas.width/2, canvas.height/2);
+    }
+
+    drawText();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+}
 </script>
 
 </body>
