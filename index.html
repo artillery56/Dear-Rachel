@@ -244,7 +244,7 @@ setInterval(()=>{
   track.style.transform=`translateX(-${i*100}%)`;
 },3000);
 
-// 🎆 烟花拼字（多行）
+// 🎆 🔥 已优化版本（只修复清晰度）
 function startFireworks(){
   const canvas=document.getElementById("fireworks");
   const ctx=canvas.getContext("2d");
@@ -268,22 +268,27 @@ Dear，我爱你 ❤️`;
     off.width=canvas.width;
     off.height=canvas.height;
 
+    offCtx.clearRect(0,0,off.width,off.height);
+
     offCtx.fillStyle="white";
-    offCtx.font="bold 60px Arial";
+    offCtx.font="bold 42px Arial";
     offCtx.textAlign="center";
 
     const lines=text.split("\n");
+
+    const startY=off.height/2-(lines.length*30);
+
     lines.forEach((line,i)=>{
-      offCtx.fillText(line, off.width/2, off.height/2 + i*70);
+      offCtx.fillText(line, off.width/2, startY+i*60);
     });
 
     let data=offCtx.getImageData(0,0,off.width,off.height);
     let pts=[];
 
-    for(let y=0;y<off.height;y+=6){
-      for(let x=0;x<off.width;x+=6){
+    for(let y=0;y<off.height;y+=4){
+      for(let x=0;x<off.width;x+=4){
         let index=(y*off.width+x)*4;
-        if(data.data[index+3]>150){
+        if(data.data[index+3]>128){
           pts.push({x,y});
         }
       }
@@ -293,25 +298,23 @@ Dear，我爱你 ❤️`;
 
   const points=getTextPoints();
 
-  points.forEach(p=>{
-    particles.push({
-      x:canvas.width/2,
-      y:canvas.height/2,
-      tx:p.x,
-      ty:p.y,
-      speed:Math.random()*0.05+0.02
-    });
-  });
+  particles=points.map(p=>({
+    x:canvas.width/2,
+    y:canvas.height/2,
+    tx:p.x,
+    ty:p.y,
+    speed:Math.random()*0.04+0.02
+  }));
 
   function animate(){
-    ctx.fillStyle="rgba(0,0,0,0.2)";
+    ctx.fillStyle="rgba(0,0,0,0.15)";
     ctx.fillRect(0,0,canvas.width,canvas.height);
 
     particles.forEach(p=>{
       p.x+=(p.tx-p.x)*p.speed;
       p.y+=(p.ty-p.y)*p.speed;
 
-      ctx.fillStyle="rgb(255,100,150)";
+      ctx.fillStyle="#ff4d88";
       ctx.fillRect(p.x,p.y,2,2);
     });
 
