@@ -99,7 +99,6 @@ p { line-height: 1.8; }
   object-fit: contain;
 }
 
-/* 🌸 */
 .flower {
   position: fixed;
   top: -50px;
@@ -113,7 +112,6 @@ p { line-height: 1.8; }
   to { transform: translateY(110vh); }
 }
 
-/* 🎆 */
 #lovePage {
   display: none;
   background: black;
@@ -244,15 +242,22 @@ setInterval(()=>{
   track.style.transform=`translateX(-${i*100}%)`;
 },3000);
 
-// 🎆 🔥 已优化版本（只修复清晰度）
+// 🎆🔥 电影级烟花 + 最终文字爆炸
 function startFireworks(){
-  const canvas=document.getElementById("fireworks");
-  const ctx=canvas.getContext("2d");
+  const canvas = document.getElementById("fireworks");
+  const ctx = canvas.getContext("2d");
 
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  ctx.scale(dpr, dpr);
 
-  let particles=[];
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+
+  let particles = [];
+  let rockets = [];
+  let stage = 0;
 
   const text = `有的人来到这个世界是为了找另一半来填满他的世界
 找错或找不到，孤独一生
@@ -261,34 +266,54 @@ function startFireworks(){
 恰巧，我找到了
 Dear，我爱你 ❤️`;
 
+  // 🚀 普通烟花
+  function spawnRocket(){
+    rockets.push({
+      x: Math.random()*W,
+      y: H,
+      vy: -(Math.random()*4 + 6),
+      color: `hsl(${Math.random()*360},100%,60%)`
+    });
+  }
+
+  function explode(x,y,color){
+    for(let i=0;i<40;i++){
+      particles.push({
+        x,y,
+        vx:(Math.random()-0.5)*6,
+        vy:(Math.random()-0.5)*6,
+        alpha:1,
+        color
+      });
+    }
+  }
+
+  // ✨ 文字点
   function getTextPoints(){
-    let off=document.createElement("canvas");
-    let offCtx=off.getContext("2d");
+    const off=document.createElement("canvas");
+    const octx=off.getContext("2d");
 
-    off.width=canvas.width;
-    off.height=canvas.height;
+    off.width=W;
+    off.height=H;
 
-    offCtx.clearRect(0,0,off.width,off.height);
-
-    offCtx.fillStyle="white";
-    offCtx.font="bold 42px Arial";
-    offCtx.textAlign="center";
+    octx.fillStyle="white";
+    octx.font="bold 42px Arial";
+    octx.textAlign="center";
 
     const lines=text.split("\n");
+    const startY=H/2-(lines.length*30);
 
-    const startY=off.height/2-(lines.length*30);
-
-    lines.forEach((line,i)=>{
-      offCtx.fillText(line, off.width/2, startY+i*60);
+    lines.forEach((l,i)=>{
+      octx.fillText(l,W/2,startY+i*60);
     });
 
-    let data=offCtx.getImageData(0,0,off.width,off.height);
+    const data=octx.getImageData(0,0,W,H);
     let pts=[];
 
-    for(let y=0;y<off.height;y+=4){
-      for(let x=0;x<off.width;x+=4){
-        let index=(y*off.width+x)*4;
-        if(data.data[index+3]>128){
+    for(let y=0;y<H;y+=4){
+      for(let x=0;x<W;x+=4){
+        let idx=(y*W+x)*4;
+        if(data.data[idx+3]>120){
           pts.push({x,y});
         }
       }
@@ -296,28 +321,73 @@ Dear，我爱你 ❤️`;
     return pts;
   }
 
-  const points=getTextPoints();
+  const textPoints = getTextPoints();
 
-  particles=points.map(p=>({
-    x:canvas.width/2,
-    y:canvas.height/2,
-    tx:p.x,
-    ty:p.y,
-    speed:Math.random()*0.04+0.02
-  }));
+  function finalExplosion(){
+    textPoints.forEach(p=>{
+      particles.push({
+        x:W/2,
+        y:H,
+        tx:p.x,
+        ty:p.y,
+        vx:0,
+        vy:0,
+        alpha:1,
+        mode:"text"
+      });
+    });
+  }
+
+  // 🎬 动画
+  let frame=0;
 
   function animate(){
     ctx.fillStyle="rgba(0,0,0,0.15)";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillRect(0,0,W,H);
 
+    // 普通烟花阶段
+    if(stage===0){
+      if(frame%15===0) spawnRocket();
+
+      rockets.forEach(r=>{
+        r.y += r.vy;
+        ctx.fillStyle=r.color;
+        ctx.fillRect(r.x,r.y,2,10);
+
+        if(r.y<Math.random()*H/2){
+          explode(r.x,r.y,r.color);
+          rockets.splice(rockets.indexOf(r),1);
+        }
+      });
+
+      if(frame>120){
+        stage=1;
+      }
+    }
+
+    // 最终文字烟花
+    if(stage===1 && frame===150){
+      finalExplosion();
+    }
+
+    // 粒子更新
     particles.forEach(p=>{
-      p.x+=(p.tx-p.x)*p.speed;
-      p.y+=(p.ty-p.y)*p.speed;
+      if(p.mode==="text"){
+        p.x += (p.tx - p.x)*0.06;
+        p.y += (p.ty - p.y)*0.06;
+      } else {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha -= 0.01;
+      }
 
-      ctx.fillStyle="#ff4d88";
+      ctx.fillStyle=p.color || "#ff4d88";
+      ctx.globalAlpha=p.alpha || 1;
       ctx.fillRect(p.x,p.y,2,2);
+      ctx.globalAlpha=1;
     });
 
+    frame++;
     requestAnimationFrame(animate);
   }
 
