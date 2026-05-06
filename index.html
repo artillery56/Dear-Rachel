@@ -9,7 +9,6 @@ body {
   margin: 0;
   font-family: "Microsoft YaHei";
   background: linear-gradient(135deg, #ffd6e0, #ffe9ec);
-  overflow-x: hidden;
 }
 
 /* 🎁 */
@@ -83,9 +82,9 @@ p { line-height: 1.8; }
   cursor: pointer;
 }
 
-/* 📸 */
+/* 📸 修复后的轮播 */
 .slider {
-  width: 95%;
+  width: 100%;
   max-width: 750px;
   height: 450px;
   margin: 30px auto;
@@ -95,11 +94,13 @@ p { line-height: 1.8; }
 
 .slider-track {
   display: flex;
-  transition: transform 1s ease;
+  width: 100%;
+  transition: transform 0.8s ease-in-out;
 }
 
 .slider img {
   width: 100%;
+  min-width: 100%; /* 🔥 关键修复 */
   height: 450px;
   object-fit: contain;
 }
@@ -113,7 +114,6 @@ p { line-height: 1.8; }
   background: black;
   color: white;
   font-size: 42px;
-  text-align: center;
 }
 
 .love-text {
@@ -210,7 +210,7 @@ Enya在5月2号刚满月。<br>
 
 </div>
 
-<!-- 📸 -->
+<!-- 📸 照片 -->
 <div class="page" id="page3">
 
 <h1>❤️ 我们的回忆 ❤️</h1>
