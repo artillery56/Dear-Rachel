@@ -12,6 +12,7 @@ body {
   overflow-x: hidden;
 }
 
+/* 🎁 开礼物 */
 #giftScreen {
   height: 100vh;
   display: flex;
@@ -56,6 +57,7 @@ body {
   transform: rotateX(120deg);
 }
 
+/* 📄 页面 */
 .page {
   display: none;
   max-width: 900px;
@@ -66,6 +68,7 @@ body {
 }
 
 h1 { text-align: center; color: #ff5c8a; }
+
 p { line-height: 1.8; }
 
 .next-btn {
@@ -79,6 +82,7 @@ p { line-height: 1.8; }
   cursor: pointer;
 }
 
+/* 📸 slider */
 .slider {
   width: 100%;
   max-width: 750px;
@@ -99,6 +103,7 @@ p { line-height: 1.8; }
   object-fit: contain;
 }
 
+/* 🌸 花 */
 .flower {
   position: fixed;
   top: -50px;
@@ -112,57 +117,93 @@ p { line-height: 1.8; }
   to { transform: translateY(110vh); }
 }
 
+/* 🖤 最后一页（清晰文字） */
 #lovePage {
   display: none;
-  background: black;
   height: 100vh;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
 }
 
-canvas {
-  display: block;
+#lovePage div {
+  max-width: 800px;
+  font-size: 22px;
+  line-height: 2;
 }
 </style>
 </head>
 
 <body>
 
+<!-- 🎁 第一页 -->
 <div id="giftScreen">
   <div style="color:#ff5c8a;margin-bottom:20px;">
     Dear，母亲节快乐 ❤️<br>打开这个礼物 🎁
   </div>
+
   <div class="gift-box" onclick="openGift(this)">
     <div class="lid"></div>
     <div class="box"></div>
   </div>
 </div>
 
+<!-- 💌 第二页 -->
 <div class="page" id="page2">
 <h1>❤️ 母亲节快乐 ❤️</h1>
 
-<p>
-Dear, 母亲节快乐。这封信承载了我对你的爱❤️
+<p>Dear, 母亲节快乐。这封信承载了我对你的爱❤️
 <br><br>
 那两天的画面，我到现在都不敢多想。<br><br>
+
 你被推进手术房的那一刻，我站在外面，什么都做不了。😔<br>
 我连替你分担一点痛都不行，只能看着门关上，心里一直在想——你一个人在里面，会不会害怕，会不会很痛。<br><br>
+
 Edna那一次是这样，<br>
 这一次Enya也是。<br><br>
+
 你一个人，躺在手术台上，承受着我无法想象的疼，把我们的两个女儿带到这个世界。<br>
 而我，却只能在外面等。😖<br><br>
+
 后来我才发现，原来我一直以为的“辛苦”，根本不算什么。<br>
 真正辛苦的人，是你。<br><br>
+
 伤口还没好，你就已经开始抱着孩子；<br>
-身体还没恢复，你就整夜醒来喂奶、哄她们。<br><br>
+身体还没恢复，你就整夜醒来喂奶、哄她们。<br>
+你很少说累，但我看得出来，你只是习惯忍着。<br><br>
+
 Edna在慢慢长大，<br>
-Enya在5月2号刚满月。<br><br>
-谢谢你，把Edna和Enya带来这个世界。❤️<br>
+Enya在5月2号刚满月。<br>
+而你，从来没有停下来，好好为自己休息过。😢<br><br>
+
+我有时候会觉得心酸，<br>
+因为我爱的人，在最需要被照顾的时候，却还在拼命照顾别人。<br><br>
+
+如果可以，<br>
+我真的希望那两次躺在手术台上的人是我。<br>
+至少，不是你一个人去承受那一切。<br><br>
+
+那扇手术室的门关上的那一刻，<br>
+我才真正明白，你对这个家的意义。<br><br>
+
+不是因为你做了多少事，<br>
+而是因为你，真的把自己的一切都给了我们。❤️<br><br>
+
+谢谢你，把Edna和Enya带来这个世界。<br>
 谢谢你，一直撑着这个家。❤️<br><br>
+
 未来发生什么我们都不知道。<br>
 但是，我可以很负责任的，并且对你许下承诺<br>
 未来的日子，我会在，你累的时候我来扛，你痛的时候我在旁边。🫂<br><br>
+
 母亲节也到了，<br>
 我比较木头，我也不太会说什么好听的话，<br>
 但我想让你知道——<br><br>
+
 你不只是她们的妈妈，<br><br>
 你也是我最心疼、最舍不得的人。❤️❤️❤️
 </p>
@@ -174,6 +215,7 @@ Enya在5月2号刚满月。<br><br>
 </audio>
 </div>
 
+<!-- 📸 第三页 -->
 <div class="page" id="page3">
 <h1>❤️ 我们的回忆 ❤️</h1>
 
@@ -194,8 +236,16 @@ Enya在5月2号刚满月。<br><br>
 </audio>
 </div>
 
+<!-- 🖤 第四页 -->
 <div id="lovePage">
-<canvas id="fireworks"></canvas>
+  <div>
+    有的人来到这个世界是为了找另一半来填满他的世界<br>
+    找错或找不到，孤独一生<br>
+    可一旦找到了，至死不渝<br><br>
+
+    恰巧，我找到了<br>
+    Dear，我爱你 ❤️
+  </div>
 </div>
 
 <script>
@@ -211,18 +261,20 @@ function openGift(el){
 function goPage3(){
   page2.style.display="none";
   page3.style.display="block";
+
   music1.pause();
   music2.play();
 }
 
 function goLove(){
   page3.style.display="none";
-  lovePage.style.display="block";
-  music2.pause();
-  startFireworks();
+  lovePage.style.display="flex";
+
+  // ✅ 不停音乐（关键）
+  music2.play();
 }
 
-// 🌸
+/* 🌸 花 */
 function flower(){
   let f=document.createElement("div");
   f.className="flower";
@@ -234,165 +286,13 @@ function flower(){
 }
 setInterval(flower,500);
 
-// 📸
+/* 📸 slider */
 let i=0;
 const track=document.getElementById("track");
 setInterval(()=>{
   i=(i+1)%5;
   track.style.transform=`translateX(-${i*100}%)`;
 },3000);
-
-// 🎆🔥 电影级烟花 + 最终文字爆炸
-function startFireworks(){
-  const canvas = document.getElementById("fireworks");
-  const ctx = canvas.getContext("2d");
-
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = window.innerWidth * dpr;
-  canvas.height = window.innerHeight * dpr;
-  ctx.scale(dpr, dpr);
-
-  const W = window.innerWidth;
-  const H = window.innerHeight;
-
-  let particles = [];
-  let rockets = [];
-  let stage = 0;
-
-  const text = `有的人来到这个世界是为了找另一半来填满他的世界
-找错或找不到，孤独一生
-可一旦找到了，至死不渝
-
-恰巧，我找到了
-Dear，我爱你 ❤️`;
-
-  // 🚀 普通烟花
-  function spawnRocket(){
-    rockets.push({
-      x: Math.random()*W,
-      y: H,
-      vy: -(Math.random()*4 + 6),
-      color: `hsl(${Math.random()*360},100%,60%)`
-    });
-  }
-
-  function explode(x,y,color){
-    for(let i=0;i<40;i++){
-      particles.push({
-        x,y,
-        vx:(Math.random()-0.5)*6,
-        vy:(Math.random()-0.5)*6,
-        alpha:1,
-        color
-      });
-    }
-  }
-
-  // ✨ 文字点
-  function getTextPoints(){
-    const off=document.createElement("canvas");
-    const octx=off.getContext("2d");
-
-    off.width=W;
-    off.height=H;
-
-    octx.fillStyle="white";
-    octx.font="bold 42px Arial";
-    octx.textAlign="center";
-
-    const lines=text.split("\n");
-    const startY=H/2-(lines.length*30);
-
-    lines.forEach((l,i)=>{
-      octx.fillText(l,W/2,startY+i*60);
-    });
-
-    const data=octx.getImageData(0,0,W,H);
-    let pts=[];
-
-    for(let y=0;y<H;y+=4){
-      for(let x=0;x<W;x+=4){
-        let idx=(y*W+x)*4;
-        if(data.data[idx+3]>120){
-          pts.push({x,y});
-        }
-      }
-    }
-    return pts;
-  }
-
-  const textPoints = getTextPoints();
-
-  function finalExplosion(){
-    textPoints.forEach(p=>{
-      particles.push({
-        x:W/2,
-        y:H,
-        tx:p.x,
-        ty:p.y,
-        vx:0,
-        vy:0,
-        alpha:1,
-        mode:"text"
-      });
-    });
-  }
-
-  // 🎬 动画
-  let frame=0;
-
-  function animate(){
-    ctx.fillStyle="rgba(0,0,0,0.15)";
-    ctx.fillRect(0,0,W,H);
-
-    // 普通烟花阶段
-    if(stage===0){
-      if(frame%15===0) spawnRocket();
-
-      rockets.forEach(r=>{
-        r.y += r.vy;
-        ctx.fillStyle=r.color;
-        ctx.fillRect(r.x,r.y,2,10);
-
-        if(r.y<Math.random()*H/2){
-          explode(r.x,r.y,r.color);
-          rockets.splice(rockets.indexOf(r),1);
-        }
-      });
-
-      if(frame>120){
-        stage=1;
-      }
-    }
-
-    // 最终文字烟花
-    if(stage===1 && frame===150){
-      finalExplosion();
-    }
-
-    // 粒子更新
-    particles.forEach(p=>{
-      if(p.mode==="text"){
-        p.x += (p.tx - p.x)*0.06;
-        p.y += (p.ty - p.y)*0.06;
-      } else {
-        p.x += p.vx;
-        p.y += p.vy;
-        p.alpha -= 0.01;
-      }
-
-      ctx.fillStyle=p.color || "#ff4d88";
-      ctx.globalAlpha=p.alpha || 1;
-      ctx.fillRect(p.x,p.y,2,2);
-      ctx.globalAlpha=1;
-    });
-
-    frame++;
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-}
 </script>
 
 </body>
