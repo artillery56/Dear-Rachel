@@ -12,20 +12,13 @@ body {
   overflow-x: hidden;
 }
 
-/* 🎁 礼物 */
+/* 🎁 */
 #giftScreen {
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.gift-text {
-  font-size: 20px;
-  color: #ff5c8a;
-  text-align: center;
-  margin-bottom: 20px;
+  flex-direction: column;
 }
 
 .gift-box {
@@ -64,23 +57,9 @@ body {
   transform: rotateX(120deg);
 }
 
-/* ❤️ 爱心 */
-.heart {
-  position: fixed;
-  font-size: 20px;
-  animation: floatUp 2s forwards;
-  z-index: 9999;
-}
-
-@keyframes floatUp {
-  to {
-    transform: translateY(-200px);
-    opacity: 0;
-  }
-}
-
-/* 💌 卡片 */
-.card {
+/* 页面 */
+.page {
+  display: none;
   max-width: 900px;
   margin: 30px auto;
   background: white;
@@ -88,7 +67,23 @@ body {
   border-radius: 20px;
 }
 
-/* 📸 翻页 */
+h1 { text-align: center; color: #ff5c8a; }
+p { line-height: 1.8; }
+
+/* 按钮 */
+.next-btn {
+  display: block;
+  margin: 30px auto;
+  padding: 12px 25px;
+  background: #ff6f91;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* 📸 */
 .slider {
   width: 95%;
   max-width: 750px;
@@ -107,25 +102,32 @@ body {
   width: 100%;
   height: 450px;
   object-fit: contain;
-  flex-shrink: 0;
-  border-radius: 15px;
 }
 
-/* 🌸 落花 */
-.flower {
-  position: fixed;
-  top: -50px;
-  font-size: 22px;
-  animation: fall linear infinite;
-  z-index: 9999;
+/* ❤️ 最后一页 */
+#lovePage {
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  color: white;
+  font-size: 42px;
+  text-align: center;
 }
 
-@keyframes fall {
-  to { transform: translateY(110vh); }
+.love-text {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeIn 3s forwards;
 }
 
-h1 { text-align: center; color: #ff5c8a; }
-p { line-height: 1.8; }
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
 </style>
 </head>
 
@@ -133,19 +135,17 @@ p { line-height: 1.8; }
 
 <!-- 🎁 -->
 <div id="giftScreen">
-  <div class="gift-text">
-    Dear，母亲节快乐 ❤️<br>
-    赶快打开我下方的礼物盒 🎁
+  <div style="margin-bottom:20px;color:#ff5c8a;">
+    Dear，母亲节快乐 ❤️<br>打开这个礼物 🎁
   </div>
-
   <div class="gift-box" onclick="openGift(this)">
     <div class="lid"></div>
     <div class="box"></div>
   </div>
 </div>
 
-<!-- 💌 -->
-<div class="card" id="mainContent" style="display:none;">
+<!-- 💌 信 -->
+<div class="page" id="page2">
 
 <h1>❤️ 母亲节快乐 ❤️</h1>
 
@@ -202,7 +202,19 @@ Enya在5月2号刚满月。<br>
 你也是我最心疼、最舍不得的人。❤️❤️❤️
 </p>
 
-<!-- 📸 五张 -->
+<button class="next-btn" onclick="goPage3()">继续看 ❤️</button>
+
+<audio id="music1" loop>
+  <source src="music.mp3">
+</audio>
+
+</div>
+
+<!-- 📸 -->
+<div class="page" id="page3">
+
+<h1>❤️ 我们的回忆 ❤️</h1>
+
 <div class="slider">
   <div class="slider-track" id="track">
     <img src="photo1.jpg">
@@ -213,31 +225,40 @@ Enya在5月2号刚满月。<br>
   </div>
 </div>
 
-<audio id="music" loop>
-  <source src="music.mp3">
+<button class="next-btn" onclick="goLove()">最后一页 ❤️</button>
+
+<audio id="music2" loop>
+  <source src="music2.mp3">
 </audio>
 
+</div>
+
+<!-- ❤️ 最后一页 -->
+<div id="lovePage">
+  <div class="love-text">我爱你 ❤️</div>
 </div>
 
 <script>
 function openGift(el){
   el.classList.add("open");
-
-  for(let i=0;i<20;i++){
-    let h=document.createElement("div");
-    h.className="heart";
-    h.innerHTML="❤️";
-    h.style.left=Math.random()*100+"vw";
-    h.style.top="60vh";
-    document.body.appendChild(h);
-    setTimeout(()=>h.remove(),2000);
-  }
-
   setTimeout(()=>{
     giftScreen.style.display="none";
-    mainContent.style.display="block";
-    music.play();
+    page2.style.display="block";
+    music1.play();
   },600);
+}
+
+function goPage3(){
+  page2.style.display="none";
+  page3.style.display="block";
+  music1.pause();
+  music2.play();
+}
+
+function goLove(){
+  page3.style.display="none";
+  lovePage.style.display="flex";
+  music2.pause();
 }
 
 let i=0;
@@ -247,17 +268,6 @@ setInterval(()=>{
   i=(i+1)%5;
   track.style.transform=`translateX(-${i*100}%)`;
 },3000);
-
-function flower(){
-  let f=document.createElement("div");
-  f.className="flower";
-  f.innerHTML=["🌸","💮","🌺"][Math.floor(Math.random()*3)];
-  f.style.left=Math.random()*100+"vw";
-  f.style.animationDuration=(3+Math.random()*5)+"s";
-  document.body.appendChild(f);
-  setTimeout(()=>f.remove(),8000);
-}
-setInterval(flower,400);
 </script>
 
 </body>
