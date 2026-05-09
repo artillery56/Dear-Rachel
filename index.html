@@ -2,6 +2,7 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>母亲节快乐 ❤️</title>
 
 <style>
@@ -65,11 +66,12 @@ body{
 
 .page{
   display:none;
-  max-width:900px;
+  max-width:950px;
   margin:30px auto;
   background:white;
   padding:25px;
   border-radius:20px;
+  overflow:hidden;
 }
 
 h1{
@@ -115,14 +117,17 @@ p{
 .memory-wall{
   position:relative;
   width:100%;
-  height:850px;
+  height:2800px;
   margin-top:30px;
 }
 
+/* 📸 照片 */
+
 .photo{
   position:absolute;
-  width:220px;
-  height:220px;
+  width:170px;
+  height:170px;
+
   object-fit:cover;
 
   border:8px solid white;
@@ -131,84 +136,44 @@ p{
   box-shadow:0 10px 25px rgba(0,0,0,0.25);
 
   opacity:0;
-  transform:scale(0.5);
 
   animation:showPhoto 1.5s forwards;
 }
 
-/* ✨ 每张照片位置 */
-
-.p1{
-  top:20px;
-  left:20px;
-  transform:rotate(-8deg);
-  animation-delay:0.5s;
-}
-
-.p2{
-  top:80px;
-  right:40px;
-  transform:rotate(8deg);
-  animation-delay:1.2s;
-}
-
-.p3{
-  top:250px;
-  left:120px;
-  transform:rotate(-12deg);
-  animation-delay:2s;
-}
-
-.p4{
-  top:320px;
-  right:120px;
-  transform:rotate(10deg);
-  animation-delay:2.8s;
-}
-
-.p5{
-  top:180px;
-  left:35%;
-  transform:rotate(-5deg);
-  animation-delay:3.5s;
-}
-
-.p6{
-  top:520px;
-  left:40px;
-  transform:rotate(7deg);
-  animation-delay:4.2s;
-}
-
-.p7{
-  top:520px;
-  right:60px;
-  transform:rotate(-8deg);
-  animation-delay:5s;
-}
-
-.p8{
-  top:600px;
-  left:35%;
-  transform:rotate(6deg);
-  animation-delay:5.8s;
-}
-
-.p9{
-  top:400px;
-  left:42%;
-  transform:rotate(-4deg);
-  animation-delay:6.5s;
-}
-
-/* ✨ 照片出现动画 */
+/* ✨ 照片出现 */
 
 @keyframes showPhoto{
+
+  from{
+    opacity:0;
+    transform:scale(0.5) rotate(-15deg);
+  }
+
   to{
     opacity:1;
     transform:scale(1) rotate(0deg);
   }
 }
+
+/* 📍 照片位置 */
+
+.p1{top:20px;left:10px;animation-delay:0.5s;}
+.p2{top:80px;right:10px;animation-delay:1.2s;}
+.p3{top:250px;left:20px;animation-delay:2s;}
+.p4{top:330px;right:20px;animation-delay:2.8s;}
+.p5{top:500px;left:28%;animation-delay:3.5s;}
+.p6{top:700px;left:10px;animation-delay:4.2s;}
+.p7{top:780px;right:10px;animation-delay:5s;}
+.p8{top:950px;left:28%;animation-delay:5.8s;}
+.p9{top:1130px;left:10px;animation-delay:6.5s;}
+.p10{top:1210px;right:10px;animation-delay:7.2s;}
+.p11{top:1380px;left:28%;animation-delay:8s;}
+.p12{top:1560px;left:10px;animation-delay:8.8s;}
+.p13{top:1650px;right:10px;animation-delay:9.6s;}
+.p14{top:1830px;left:28%;animation-delay:10.4s;}
+.p15{top:2020px;left:10px;animation-delay:11.2s;}
+.p16{top:2100px;right:10px;animation-delay:12s;}
+.p17{top:2280px;left:28%;animation-delay:12.8s;}
 
 /* 🖤 最后一页 */
 
@@ -238,7 +203,7 @@ p{
 
 <div id="giftScreen">
 
-  <div style="color:#ff5c8a;margin-bottom:20px;">
+  <div style="color:#ff5c8a;margin-bottom:20px;text-align:center;">
     Dear，母亲节快乐 ❤️<br>
     赶快打开这个礼物吧 🎁
   </div>
@@ -257,6 +222,7 @@ p{
 <h1>❤️ 母亲节快乐 ❤️</h1>
 
 <p>
+
 Dear, 母亲节快乐。这封信承载了我对你的爱❤️
 <br><br>
 
@@ -299,8 +265,8 @@ Enya在5月2号刚满月。<br>
 谢谢你，一直撑着这个家。❤️<br><br>
 
 未来发生什么我们都不知道。<br>
-但是，我可以很负责任的，并且对你许下承诺。<br>
-未来的日子，我会在，你累的时候我来扛，你痛的时候我在旁边。🫂<br><br>
+但是，我可以很负责任地对你许下承诺。<br>
+未来的日子，我会在。你累的时候我来扛，你痛的时候我在旁边。🫂<br><br>
 
 母亲节也到了，<br>
 我比较木头，我也不太会说什么好听的话，<br>
@@ -309,6 +275,7 @@ Enya在5月2号刚满月。<br>
 你不只是她们的妈妈，<br><br>
 
 你也是我最心疼、最舍不得的人。❤️❤️❤️
+
 </p>
 
 <button class="next-btn" onclick="goPage3()">
@@ -328,6 +295,7 @@ Enya在5月2号刚满月。<br>
 <h1>❤️ 我们的回忆 ❤️</h1>
 
 <div class="memory-wall">
+
 <img src="photo1.jpg" class="photo p1">
 <img src="photo2.jpg" class="photo p2">
 <img src="photo3.jpg" class="photo p3">
@@ -385,10 +353,11 @@ function openGift(el){
 
   setTimeout(()=>{
 
-    giftScreen.style.display="none";
-    page2.style.display="block";
+    document.getElementById("giftScreen").style.display="none";
 
-    music1.play();
+    document.getElementById("page2").style.display="block";
+
+    document.getElementById("music1").play();
 
   },600);
 }
@@ -397,21 +366,22 @@ function openGift(el){
 
 function goPage3(){
 
-  page2.style.display="none";
-  page3.style.display="block";
+  document.getElementById("page2").style.display="none";
 
-  music1.pause();
+  document.getElementById("page3").style.display="block";
 
-  music2.play();
+  document.getElementById("music1").pause();
+
+  document.getElementById("music2").play();
 }
 
 /* ❤️ 最后一页 */
 
 function goLove(){
 
-  page3.style.display="none";
+  document.getElementById("page3").style.display="none";
 
-  lovePage.style.display="flex";
+  document.getElementById("lovePage").style.display="flex";
 }
 
 /* 🌸 飘花 */
@@ -430,7 +400,9 @@ function flower(){
 
   document.body.appendChild(f);
 
-  setTimeout(()=>f.remove(),8000);
+  setTimeout(()=>{
+    f.remove();
+  },8000);
 }
 
 setInterval(flower,500);
